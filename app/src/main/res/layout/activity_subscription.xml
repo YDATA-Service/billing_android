@@ -5,33 +5,59 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tv_sku"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="설명"
-        android:textColor="@color/teal_200"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_subscription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="이용권 상태: "
-        android:textSize="16sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_basic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="와이데이타구독서비스"/>
+            <TextView
+                android:id="@+id/tv_sku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="설명"
+                android:textColor="@color/teal_200"
+                android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/btn_vip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="와이데이타구독서비스프리미엄"/>
+            <TextView
+                android:id="@+id/tv_subscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="이용권 상태: "
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="국내 베이직" />
+
+            <Button
+                android:id="@+id/btn_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="국내 프리미엄" />
+
+            <Button
+                android:id="@+id/btn_basic2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="미국 베이직" />
+
+            <Button
+                android:id="@+id/btn_vip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="미국 프리미엄" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

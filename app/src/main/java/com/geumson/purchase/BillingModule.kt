@@ -1,4 +1,4 @@
-package com.ydata.yangtest
+package com.geumson.purchase
 
 import android.app.Activity
 import android.util.Log

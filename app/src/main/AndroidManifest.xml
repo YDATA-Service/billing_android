@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PurchaseV3">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.geumson.purchase.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OneTimeActivity"/>
-        <activity android:name=".SubscriptionActivity"/>
+        <activity android:name="com.geumson.purchase.OneTimeActivity"/>
+        <activity android:name="com.geumson.purchase.SubscriptionActivity"/>
     </application>
 
 </manifest>

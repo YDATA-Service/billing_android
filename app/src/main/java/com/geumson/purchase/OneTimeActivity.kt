@@ -1,4 +1,4 @@
-package com.ydata.yangtest
+package com.geumson.purchase
 
 import android.os.Bundle
 import android.widget.Toast
@@ -7,43 +7,61 @@ import androidx.lifecycle.lifecycleScope
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
+import com.geumson.purchase.BillingModule.Callback
 
-import com.ydata.yangtest.databinding.ActivitySubscriptionBinding
+import com.ydata.yangtest.databinding.ActivityOneTimeBinding
 
-class SubscriptionActivity : AppCompatActivity() {
+class OneTimeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySubscriptionBinding
+    private lateinit var binding: ActivityOneTimeBinding
     private lateinit var bm: BillingModule
+
+    private val storage: AppStorage by lazy {
+        AppStorage(this)
+    }
+
     private var mSkuDetails = listOf<SkuDetails>()
         set(value) {
             field = value
             setSkuDetailsView()
         }
 
-    private var currentSubscription: Purchase? = null
+
+    // 이전에 광고 제거 구매 여부
+    private var isPurchasedRemoveAds = false
         set(value) {
             field = value
-            updateSubscriptionState()
+            updateRemoveAdsView()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySubscriptionBinding.inflate(layoutInflater)
+        binding = ActivityOneTimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bm = BillingModule(this, lifecycleScope, object: BillingModule.Callback {
+        bm = BillingModule(this, lifecycleScope, object: Callback {
             override fun onBillingModulesIsReady() {
-                bm.querySkuDetail(BillingClient.SkuType.SUBS, Sku.SUB_BASIC, Sku.SUB_VIP) { skuDetails ->
+                bm.querySkuDetail(BillingClient.SkuType.INAPP, Sku.ydata_0001, Sku.ydata_0002) { skuDetails ->
                     mSkuDetails = skuDetails
                 }
 
-                bm.checkSubscribed {
-                    currentSubscription = it
+                bm.checkPurchased(Sku.ydata_0001) {
+                    isPurchasedRemoveAds = it
                 }
             }
 
             override fun onSuccess(purchase: Purchase) {
-                currentSubscription = purchase
+                when (purchase.sku) {
+                    Sku.ydata_0001 -> {
+                        isPurchasedRemoveAds = true
+                    }
+                    Sku.ydata_0002 -> {
+                        // 크리스탈 1000개를 충전합니다.
+                        val currentCrystal = storage.getInt(PREF_KEY_CRYSTAL)
+                        storage.put(PREF_KEY_CRYSTAL, currentCrystal + 1000)
+                        updateCrystalView()
+                    }
+                }
             }
 
             override fun onFailure(errorCode: Int) {
@@ -59,26 +77,26 @@ class SubscriptionActivity : AppCompatActivity() {
                     }
                 }
             }
-
         })
 
+        updateCrystalView()
         setClickListeners()
     }
 
     private fun setClickListeners() {
         with (binding) {
             // 광고 제거 구매 버튼 클릭
-            btnVip.setOnClickListener {
-                mSkuDetails.find { it.sku == Sku.SUB_VIP }?.let { skuDetail ->
-                    bm.purchase(skuDetail, currentSubscription)
+            btnPurchaseRemoveAds.setOnClickListener {
+                mSkuDetails.find { it.sku == Sku.ydata_0001 }?.let { skuDetail ->
+                    bm.purchase(skuDetail)
                 } ?: also {
                     Toast.makeText(applicationContext, "상품을 찾을 수 없습니다.", Toast.LENGTH_LONG).show()
                 }
             }
 
-            btnBasic.setOnClickListener {
-                mSkuDetails.find { it.sku == Sku.SUB_BASIC }?.let { skuDetail ->
-                    bm.purchase(skuDetail, currentSubscription)
+            btnPurchaseCrystal.setOnClickListener {
+                mSkuDetails.find { it.sku == Sku.ydata_0002 }?.let { skuDetail ->
+                    bm.purchase(skuDetail)
                 } ?: also {
                     Toast.makeText(applicationContext, "상품을 찾을 수 없습니다.", Toast.LENGTH_LONG).show()
                 }
@@ -96,16 +114,20 @@ class SubscriptionActivity : AppCompatActivity() {
         binding.tvSku.text = builder
     }
 
-    override fun onResume() {
-        super.onResume()
-        bm.onResume(BillingClient.SkuType.SUBS)
+    private fun updateRemoveAdsView() {
+        binding.tvRemoveAds.text = "광고 제거 여부: ${if (isPurchasedRemoveAds) "O" else "X"}"
     }
 
-    private fun updateSubscriptionState() {
-        currentSubscription?.let {
-            binding.tvSubscription.text = "구독중: ${it.sku} | 자동갱신: ${it.isAutoRenewing}"
-        } ?: also {
-            binding.tvSubscription.text = "구독안함"
-        }
+    private fun updateCrystalView() {
+        binding.tvCrystal.text = "보유 크리스탈: ${storage.getInt(PREF_KEY_CRYSTAL)}"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bm.onResume(BillingClient.SkuType.INAPP)
+    }
+
+    companion object {
+        private const val PREF_KEY_CRYSTAL = "crystal"
     }
 }

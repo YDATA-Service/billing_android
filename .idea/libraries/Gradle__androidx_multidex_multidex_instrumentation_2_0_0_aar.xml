@@ -6,6 +6,8 @@
       <root url="file://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/712ed5cc1aeda91c801e0681383f667e/transformed/multidex-instrumentation-2.0.0/AndroidManifest.xml" />
       <root url="jar://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/712ed5cc1aeda91c801e0681383f667e/transformed/multidex-instrumentation-2.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/712ed5cc1aeda91c801e0681383f667e/transformed/multidex-instrumentation-2.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/712ed5cc1aeda91c801e0681383f667e/transformed/multidex-instrumentation-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/712ed5cc1aeda91c801e0681383f667e/transformed/multidex-instrumentation-2.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

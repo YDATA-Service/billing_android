@@ -6,10 +6,13 @@
       <root url="jar://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/25c01d4a3e3f83e8c8aeeda26ab93ea3/transformed/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/25c01d4a3e3f83e8c8aeeda26ab93ea3/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
       <root url="file://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/transforms-3/25c01d4a3e3f83e8c8aeeda26ab93ea3/transformed/lifecycle-livedata-2.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/25c01d4a3e3f83e8c8aeeda26ab93ea3/transformed/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/25c01d4a3e3f83e8c8aeeda26ab93ea3/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../../Program Files/Microsoft/jdk-17.0.3.7-hotspot/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

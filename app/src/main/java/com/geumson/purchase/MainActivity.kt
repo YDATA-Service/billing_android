@@ -1,4 +1,4 @@
-package com.ydata.yangtest
+package com.geumson.purchase
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
